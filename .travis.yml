@@ -1,0 +1,33 @@
+language: cpp
+
+env:
+  global:
+    # Ubuntu version
+    - LINUX_DIST=trusty
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: true
+      compiler: gcc
+      addons:
+       apt:
+         packages: &precise_latest_boost_packages
+           - gcc-8
+           - g++-8
+         sources: &precise_latest_boost_sources
+           - ubuntu-toolchain-r-test
+
+script:
+    ############################################################################
+    # Build main and tests
+    ############################################################################
+     - export CC=gcc-8
+     - export CXX=g++-8
+     - git submodule update --init --recursive
+     - mkdir -p _build
+     - cd _build
+     - cmake ..
+     - make
+     - ./simd_mwe
