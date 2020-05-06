@@ -6,17 +6,6 @@ This repository uses git submodules, thus to build the repo, and run the example
 
 ```
 git clone --recurse-submodules https://github.com/Wheest/libsimdpp_cmake_mwe
-mkdir -p libsimdpp_cmake_mwe/_build
-cd libsimdpp_cmake_mwe/_build
-cmake ..
-make
-./test
+cmake -H. -Bbuild
+cmake --build build
 ```
-
-As it stands, the repo fails with error:
-
-```
-main.cpp:(.text+0x5): undefined reference to `print_arch()'
-```
-
-The CMake config does have the header file available to `main.cpp`, so it is unclear what the issue is.  The same code builds in the [Makefile example](https://github.com/p12tic/libsimdpp/tree/master/examples/dynamic_dispatch).

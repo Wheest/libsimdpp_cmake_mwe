@@ -1,12 +1,9 @@
 cmake_minimum_required (VERSION 3.8)
 project (SIMD_MWE)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
-add_subdirectory(${PROJECT_SOURCE_DIR}/3rdparty/libsimdpp/ build)
-list(APPEND Mwe_INCLUDE_DIRS PUBLIC ${PROJECT_SOURCE_DIR}/3rdparty/libsimdpp/)
-list(APPEND Mwe_INCLUDE_DIRS PUBLIC ${PROJECT_SOURCE_DIR})
-
-include_directories(${Mwe_INCLUDE_DIRS})
+set(SIMDPP_DIR "${PROJECT_SOURCE_DIR}/3rdparty/libsimdpp")
+set(CMAKE_MODULE_PATH "${SIMDPP_DIR}/cmake")
+include_directories(${SIMDPP_DIR})
 
 include(SimdppMultiarch)
 simdpp_get_runnable_archs(RUNNABLE_ARCHS)
